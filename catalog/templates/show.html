@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container-5">
+    {% with messages=get_flashed_messages() %}
+    {% if messages %}
+    {% for msg in  messages %}
+    {{msg}}
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+  <h2>Bordered Table</h2>
+  <p>The .table-bordered class adds borders to a table:</p>            
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>S_no</th>
+        <th>Name</th>
+        <th>Sur_name</th>
+        <th>Mobile</th>
+        <th>Email</th>
+        <th>Branch</th>
+        <th>Role</th>
+        <th colspan=2>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for r in reg %}
+      <tr>
+        <td>{{r.id}}</td>
+        <td>{{r.name}}</td>
+        <td>{{r.sur_name}}</td>
+        <td>{{r.mobile}}</td>
+        <td>{{r.email}}</td>
+        <td>{{r.branch}}</td>
+        <td>{{r.role}}</td>
+        <td><a href="{{url_for('editData',register_id=r.id)}}">Edit</a></td>
+        <td><a href="{{url_for('deleteData',register_id=r.id)}}">Delete</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<div class="container">
+<div class="btn btn-primary">
+    <center><a href="{{url_for('form')}}"> <font color="white"> Add new data  </font></a></center>
+</div>
+</div>
+</body>
+</html>
